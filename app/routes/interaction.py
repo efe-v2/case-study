@@ -33,6 +33,7 @@ class InteractionResponse(BaseModel):
     status: str
     message_id: str
 
+
 @router.post("/user-interaction", response_model=InteractionResponse)
 def user_interaction(interaction: UserInteraction):
     deduplication_id = str(uuid.uuid4())
