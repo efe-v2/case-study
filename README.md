@@ -79,7 +79,7 @@ Getting Started:
 
 - Clone the repository:
 
-git clone https://github.com/your-username/case-study.git
+git clone https://github.com/efe-v2/case-study.git
 cd case-study
 
 - Build and run the Docker container:
