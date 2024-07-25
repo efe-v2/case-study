@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    volumes:
+      - .:/app
+    ports:
+      - "5000:80"
+    env_file:
+      - .env
+    command: uvicorn app.main:app --host 0.0.0.0 --port 80
+
+  test:
+    build:
+      context: .
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    command: ["pytest", "--maxfail=1", "--disable-warnings", "-v"]
