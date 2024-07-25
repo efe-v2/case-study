@@ -1,0 +1,9 @@
+boto3
+numpy
+lightfm
+fastapi
+uvicorn
+pytest
+httpx
+pytest-dotenv
+
