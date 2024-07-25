@@ -30,10 +30,12 @@ jobs:
     - name: Install other dependencies
       run: pip install -r requirements_no_lightfm.txt
 
+    - name: Set environment variables
+      run: |
+        echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> $GITHUB_ENV
+        echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+        echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+        echo "SQS_QUEUE_URL=${{ secrets.SQS_QUEUE_URL }}" >> $GITHUB_ENV
+
     - name: Run tests
-      env:
-        AWS_REGION: ${{ secrets.AWS_REGION }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        SQS_QUEUE_URL: ${{ secrets.SQS_QUEUE_URL }}
       run: pytest
