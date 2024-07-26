@@ -4,6 +4,8 @@ Welcome to this case study repository. I hope you enjoy it while reading both th
 
 Before starting you can access to the notebook via this link https://www.kaggle.com/code/emirfarukerman/recommendation-system-final or the .ipynb file in the root of this project.
 
+Note !! : Please check the above kaggle link for the latest version !!
+
 ## Background
 
 My name is Emir, and I currently work as an AI & Backend engineer. Let me tell you a bit about my ML background. I graduated from Inza & Google Machine Learning Bootcamp which is a 6 month education where we learn most of the basics from neural network to reinforcement learning from Andrew Ng and Inzva Tutors, and subsequently prepared for the TensorFlow Certification of Google. After earning the certification I become a Tensorflow Developer.
