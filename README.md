@@ -2,6 +2,8 @@ Insider - Case Study - Emir Faruk ERMAN
 
 Welcome to this case study repository. I hope you enjoy it while reading both this project and the notebook 🚀
 
+Before starting you can access to the notebook via this link https://www.kaggle.com/code/emirfarukerman/recommendation-system-final or the .ipynb file in the root of this project.
+
 ## Background
 
 My name is Emir, and I currently work as an AI & Backend engineer. Let me tell you a bit about my ML background. I graduated from Inza & Google Machine Learning Bootcamp which is a 6 month education where we learn most of the basics from neural network to reinforcement learning from Andrew Ng and Inzva Tutors, and subsequently prepared for the TensorFlow Certification of Google. After earning the certification I become a Tensorflow Developer.
@@ -63,6 +65,7 @@ The Progress:
 🔲 Github Workflow  
    
    🔲 Github Pytest When PR to Main Workflow 
+   (There is a current problem with the envirement value of repository secrets, will be fixed if any time left)
 
    🔲 Github Docker Deployement When Merge to Main Workflow 
 
@@ -81,6 +84,8 @@ Getting Started:
 
 git clone https://github.com/efe-v2/case-study.git
 cd case-study
+
+- Add .env file provided in the mail to the rrot of this project
 
 - Build and run the Docker container:
 
@@ -110,6 +115,6 @@ Once the application is running, you can access the Swager API documentation at 
 
 I've truly enjoyed working on this project and sharing the journey with you.
 
-I'm eager to dive deeper into this field, experiment with advanced methods, and explore new techniques to enhance recommendation systems. There’s always more to learn and discover, and I’m excited about the potential improvements and innovations ahead.
+I'm eager to dive deeper into this field, experiment with advanced methods, and explore new techniques to enhance recommendation systems. There’s always more to learn and discover, and I am excited about the potential improvements and innovations ahead.
 
 Thank you for taking the time to read through this project! Your feedback and suggestions are greatly appreciated and always welcome. 🚀
