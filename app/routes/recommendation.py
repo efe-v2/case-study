@@ -1,39 +1,72 @@
+from app.services.postgre import get_latest_train_model
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List
-from ..utils import load_model, load_user_mapping, load_item_mapping, load_item_features
-from ..model import recommend_existing_user
+from ..utils import  load_model_and_data
+from ..services.recommend import recomment_to_user
 
 router = APIRouter()
 
-model = load_model()
-user_mapping = load_user_mapping()
-item_mapping = load_item_mapping()
-item_features = load_item_features()
+latest_completed_model = get_latest_train_model()
 
+model_id = latest_completed_model.id if latest_completed_model else "default"
+
+load_model_and_data(model_id)
 class RecommendationRequest(BaseModel):
     user_id: str
 
 class RecommendationResponse(BaseModel):
     user_id: str
     recommendations: List[str]
+    known_items: List[str]
 
-@router.get("/recommend", response_model=RecommendationResponse)
-def recommend(user_id: str):
+@router.get("/recommend/latest", response_model=RecommendationResponse,tags=["Recommendation"])
+def recommend(user_id: str,n_recommendation:int=10,threshold:int=0):
+
+    latest_completed_model = get_latest_train_model()
+
+    model_id = latest_completed_model.id if latest_completed_model else "default"
+
+    model, user_dict, items_dict, interactions = load_model_and_data(model_id)
+
     try:
-        recommendations = recommend_existing_user(model, user_id, user_mapping, item_mapping, item_features)
-        return RecommendationResponse(user_id=user_id, recommendations=recommendations)
+        rec_list = recomment_to_user(model = model, 
+                            interactions = interactions, 
+                            user_id = user_id, 
+                            user_dict = user_dict,
+                            item_dict = items_dict, 
+                            threshold = 0,
+                            number_rec_items = n_recommendation,
+                            show = False)
+        
+        return RecommendationResponse(user_id=user_id, 
+                                      recommendations=rec_list["recommendations"],
+                                      known_items=rec_list["known_items"])
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/update-model")
-def update_model(version_id: str):
+
+@router.get("/recommend/model", response_model=RecommendationResponse,tags=["Recommendation"])
+def recommend(user_id: str,n_recommendation:int=10,threshold:int=0,model_id:str=None):
+
+    if model_id:
+        model, user_dict, items_dict, interactions = load_model_and_data(model_id)
+    else:
+         model, user_dict, items_dict, interactions = load_model_and_data("default")
+
     try:
-        global model, user_mapping, item_mapping, item_features
-        model = load_model('models/lightfm_model.pkl', version_id=version_id)
-        user_mapping = load_user_mapping('models/user_mapping.pkl', version_id=version_id)
-        item_mapping = load_item_mapping('models/item_mapping.pkl', version_id=version_id)
-        item_features = load_item_features('models/item_features.pkl', version_id=version_id)
-        return {"status": "Model updated successfully"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        rec_list = recomment_to_user(model = model, 
+                            interactions = interactions, 
+                            user_id = user_id, 
+                            user_dict = user_dict,
+                            item_dict = items_dict, 
+                            threshold = threshold,
+                            number_rec_items = n_recommendation,
+                            show = False)
+        
+        return RecommendationResponse(user_id=user_id, 
+                                      recommendations=rec_list["recommendations"],
+                                      known_items=rec_list["known_items"])
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+

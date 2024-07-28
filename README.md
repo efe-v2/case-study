@@ -27,7 +27,7 @@ Let's Get Started 🚀 :
 
 The main goal of this project is to create a recommendation engine for an e-commerce website. This repository showcases a comprehensive approach to building a machine learning model that personalizes product recommendations based on user interactions.
 
-In this project, I:
+In this project,:
 
 I used pre-collected data to analyze user interactions from hundreds of different e-commerce websites.
 
@@ -35,7 +35,7 @@ To create a recomendation system, LightFM library used to build a collaborative 
 
 For frontend or related service to be able to get the recommendations FastAPI based application developed through a RESTful API.
 
-Data is everything, to handle real-time user interactions an architecture designed which send user interaction data to AWS SQS, process it using AWS Lambda, and store it in S3 for further analysis and model retraining.
+Data is everything, to handle user interactions an architecture designed which send user interaction data to AWS SQS, process it using AWS Lambda, and store it in S3 for further analysis and model retraining.
 
 A CI/CD pipeline implemented to ensure code quality and functionality through automated tests and continuous integration.
 
@@ -44,19 +44,27 @@ The Progress:
 
 ✅ Recommendation Model Created
 
-✅ Interaction Endopint Completed
+✅ AWS RDS For Both Training & User Interactions Collections Implemented
 
-   ✅ AWS SQS Connection (FIFO)
-
-   ✅ AWS Lambda Connection
-
-   ✅ AWS S3 Connection To Store File Structured Interactions
-   
 ✅ Recommendation Endpoint Completed
    
-   ✅ AWS S3 Connection For Model Files
+-- ✅ AWS S3 Connection For Model Files
 
-✅ Manuel Model Updating Endpoint Completed
+-- ✅ AWS RDS Connection For Multi Model Prediction 
+
+✅ Train New Model Endpoint Completed
+
+✅ Status Track Endpoint for New Model Training Endpoint Completed
+
+✅ Upload Train Data Endpoint Completed
+
+✅ Interaction Endopint Completed
+
+-- ✅ AWS SQS Connection (FIFO)
+
+-- ✅ AWS Lambda Connection
+
+-- ✅ AWS S3 Connection To Store File Structured Interactions
    
 ✅ Dockerization Completed
 
@@ -91,7 +99,7 @@ cd case-study
 
 - Build and run the Docker container:
 
-docker-compose up app
+docker-compose up app -- build
 
 Note : If you are a Mac ARM based user and want to run python test, I created docker-compose for test to run without any problem
 
@@ -106,7 +114,15 @@ Make sure to set the following environment variables:
 - AWS_REGION
 - AWS_ACCESS_KEY_ID
 - AWS_SECRET_ACCESS_KEY
+- S3_BUCKET
 - SQS_QUEUE_URL
+- TEST_ENV
+- DB_USER
+- DB_PASSWORD
+- DB_HOST
+- DB_PORT
+- DB_NAME 
+- DATABASE_URL
 
 You can add these to your environment or define them in your .env file.
 

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel,Field
+from pydantic import BaseModel
 import boto3
 import os
 import uuid
@@ -33,7 +33,7 @@ class InteractionResponse(BaseModel):
     status: str
     message_id: str
 
-@router.post("/user-interaction", response_model=InteractionResponse)
+@router.post("/user-interaction", response_model=InteractionResponse,tags=["Interaction"])
 def user_interaction(interaction: UserInteraction):
     deduplication_id = str(uuid.uuid4())
     try:

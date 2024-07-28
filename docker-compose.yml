@@ -17,6 +17,8 @@ services:
       context: .
     volumes:
       - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
     env_file:
       - .env
     command: ["pytest", "--maxfail=1", "--disable-warnings", "-v"]

@@ -6,4 +6,17 @@ uvicorn
 pytest
 httpx
 pytest-dotenv
+pandas
+numpy
+scipy
+pydantic
+tqdm
+pyarrow
+fastparquet
+sqlalchemy
+psycopg2
+
+
+
+
 
